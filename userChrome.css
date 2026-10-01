@@ -1,0 +1,145 @@
+:root {
+    --goodbyePills: 7px;
+    --toolbarbutton-border-radius: var(--goodbyePills);
+    --thinTabsMin: 120px;
+    --thinTabsMax: 200px;
+}
+
+/* Tabs: rounded rectangles instead of pills */
+.tab-background {
+    border-radius: var(--goodbyePills) !important;
+}
+
+/* Narrower horizontal tabs */
+#tabbrowser-tabs {
+    --tab-min-width: var(--thinTabsMin) !important;
+    --tab-max-width: var(--thinTabsMax) !important;
+}
+
+/* Apply custom widths only to fully opened, non-closing tabs */
+#tabbrowser-tabs:not([orient="vertical"])
+.tabbrowser-tab[fadein]:not([pinned]):not([closing]) {
+    min-width: var(--thinTabsMin) !important;
+}
+
+/* Preserve Firefox's temporary width adjustments during tab closing */
+#tabbrowser-tabs:not([orient="vertical"])
+.tabbrowser-tab[fadein]:not([pinned]):not([closing]):not([style*="max-width"]) {
+    max-width: var(--thinTabsMax) !important;
+}
+
+/* Address bar */
+#urlbar {
+    --urlbar-border-radius: var(--goodbyePills) !important;
+    --urlbar-inner-border-radius: var(--goodbyePills) !important;
+    --urlbarView-border-radius: var(--goodbyePills) !important;
+}
+#urlbar, #urlbar .urlbar-background, #urlbar .urlbar-input-container {
+    border-radius: var(--goodbyePills) !important;
+}
+.urlbarView, .urlbarView-background {
+    border-radius: var(--goodbyePills) !important;
+}
+
+/* Firefox menu and other popup panels */
+panel, menupopup {
+    --panel-border-radius: var(--goodbyePills) !important;
+    --arrowpanel-border-radius: var(--goodbyePills) !important;
+    --arrowpanel-menuitem-border-radius: var(--goodbyePills) !important;
+    --menuitem-border-radius: var(--goodbyePills) !important;
+}
+
+panel .subviewbutton, menupopup > menu, menupopup > menuitem {
+    border-radius: var(--goodbyePills) !important;
+}
+
+
+
+#urlbar {
+    --searchSelectorBackground: color-mix(in srgb, var(--urlbar-box-background-color-focus) 50%, transparent 50%);
+    --searchSelectorText: var(--urlbar-box-text-color);
+}
+
+/* Same themed background in every button state */
+#urlbar .searchmode-switcher {
+    --button-background-color: var(--searchSelectorBackground) !important;
+    --button-background-color-muted: var(--searchSelectorBackground) !important;
+    --button-background-color-hover: var(--searchSelectorBackground) !important;
+    --button-background-color-active: var(--searchSelectorBackground) !important;
+    --button-background-color-selected: var(--searchSelectorBackground) !important;
+    --button-text-color: var(--searchSelectorText) !important;
+    --button-border-radius: var(--goodbyePills) !important;
+
+    background-color: var(--searchSelectorBackground) !important;
+    color: var(--searchSelectorText) !important;
+    fill: currentColor !important;
+    border-radius: var(--goodbyePills) !important;
+}
+
+/* Hover: same color, 65% opacity */
+#urlbar .searchmode-switcher:hover::part(button) {
+    background-color: color-mix(
+        in srgb,
+        var(--urlbar-box-background-color-focus) 65%,
+        transparent
+    ) !important;
+}
+
+/* Pressed or menu open: same color, 80% opacity */
+#urlbar .searchmode-switcher:is(:active, [open], [aria-expanded="true"])::part(button),
+:root:has(.searchmode-switcher-panel[panelopen])
+    #urlbar .searchmode-switcher::part(button),
+:root:has(.searchmode-switcher-panel-list[open])
+    #urlbar .searchmode-switcher::part(button) {
+    background-color: color-mix(
+        in srgb,
+        var(--urlbar-box-background-color-focus) 80%,
+        transparent
+    ) !important;
+}
+
+/* Page zoom indicator in the address bar */
+#urlbar-zoom-button {
+    border-radius: var(--goodbyePills) !important;
+}
+
+/* Toolbar buttons, including extension hover backgrounds */
+toolbar .toolbarbutton-1, toolbar .toolbarbutton-1 > .toolbarbutton-icon, toolbar .toolbarbutton-1 > .toolbarbutton-badge-stack, toolbar .toolbarbutton-1 > .toolbarbutton-text {
+    border-radius: var(--goodbyePills) !important;
+}
+
+/* Bookmarks toolbar: bookmark and folder buttons */
+#PersonalToolbar .bookmark-item {
+    border-radius: var(--goodbyePills) !important;
+}
+
+/* Outer frame of Firefox's embedded alerts and confirmations */
+.dialogBox {
+    border-radius: var(--goodbyePills) !important;
+    overflow: hidden !important;
+}
+
+/* Alert and confirmation dialog contents, including Confirm Exit */
+@-moz-document url("chrome://global/content/commonDialog.xhtml"), url("chrome://global/content/selectDialog.xhtml") {
+    :root {
+        --button-border-radius: var(--goodbyePills) !important;
+    }
+
+    body, dialog, #commonDialog {
+        border-radius: var(--goodbyePills) !important;
+    }
+
+    button, .dialog-button {
+        border-radius: var(--goodbyePills) !important;
+    }
+}
+
+/* Find bar: search input */
+findbar .findbar-textbox {
+    border-radius: var(--goodbyePills) !important;
+}
+
+/* Find bar: buttons and their hover backgrounds */
+findbar button, findbar toolbarbutton, findbar toolbarbutton > .toolbarbutton-icon, findbar toolbarbutton > .toolbarbutton-text {
+    border-radius: var(--goodbyePills) !important;
+}
